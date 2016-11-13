@@ -1,34 +1,20 @@
 <?php
 
+include "common.php";
 
 $server = $_POST["server"];
-$port = 11900;
+$port = $_POST["port"];
 $group = $_POST["group"];
 $user = $_POST["user"];
 $password = $_POST["password"];
 
-$date = array(2016, 11, 14);
+$dateY = $_POST["dateY"];
+$dateM = $_POST["dateM"];
+$dateD = $_POST["dateD"];
 
-$socket = stream_socket_client("tcp://" . gethostbyname($server) . ":" . $port, $errno, $errorMessage);
+$date = array($dateY, $dateM, $dateD);
 
-if ($socket === false) {
-  throw new UnexpectedValueException("Failed to connect: $errorMessage");
-}
-
-function request($socket, $request) {
-  $id = mt_rand(1, 10000);
-  $request["commID"] = $id;
-  fwrite($socket, json_encode($request) . "\r\n");
-
-  do {
-    $resp = json_decode(fgets($socket));
-  } while ($resp->commID != $id || $resp->status == 102);
-
-  return $resp;
-}
-
-// handle greeting
-fgets($socket);
+$socket = connect($server, $port);
 
 // check protocol version --
 
@@ -45,7 +31,7 @@ $getHwReq = array("command" => "gethw", "date" => $date);
 $getHwResp = request($socket, $getHwReq);
 
 if ($getHwResp->status != 200) {
-  die("Server didn't return 200 OK for getHW");
+  die("Server didn't return 200 OK for getHW. Status: " . $getHwResp->payload);
 }
 
 echo json_encode($getHwResp->payload);

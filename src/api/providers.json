@@ -1,0 +1,47 @@
+{
+	"servers": [
+	
+		{
+			"name": "TestServer",
+			"address": "hw.m-lessmann.de",
+			"port": 11900,
+			"country": "DE",
+            "state": "Schleswig-Holstein",
+            "city": "Henstedt-Ulzburg",
+			"postal": "25486",
+			"optional": {
+				"tcp_plaintext_enabled": true,
+				"tcp_encrypted_enabled": false
+			}
+		},
+        {
+            "name": "DebugServer",
+            "address": "l4yg.ddns.net",
+            "port": 11900,
+            "country": "DE",
+            "state": "D3bug",
+            "city": "Gl1tch",
+            "postal": "25486",
+            "optional": {
+                "tcp_plaintext_enabled": true,
+                "tcp_encrypted_enabled": false
+            }
+        },
+        {
+            "name": "Alstergymnasium Henstedt-Ulzburg",
+            "address": "hw.m-lessmann.de",
+            "port": 11900,
+            "country": "DE",
+            "state": "Schleswig-Holstein",
+            "postal": "245586",
+            "city": "Henstedt-Ulzburg",
+            "optional": {
+                "tcp_plaintext_enabled": true,
+                "tcp_encrypted_enabled": false
+            }
+        }
+	
+	],
+	
+	"nameservers": []
+}
