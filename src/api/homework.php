@@ -4,9 +4,6 @@ include "common.php";
 
 $server = $_POST["server"];
 $port = $_POST["port"];
-$group = $_POST["group"];
-$user = $_POST["user"];
-$password = $_POST["password"];
 
 $dateY = $_POST["dateY"];
 $dateM = $_POST["dateM"];
@@ -19,10 +16,9 @@ $socket = connect($server, $port);
 // check protocol version --
 
 // login
-$loginReq = array("command" => "login", "parameters" => array($group, $user, $password));
-$loginResp = request($socket, $loginReq);
+$loginRes = login($socket);
 
-if ($loginResp->status != 200) {
+if ($loginRes["status"] != "logged_in") {
   die("Server didn't return 200 OK for login.");
 }
 
