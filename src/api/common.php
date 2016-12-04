@@ -38,7 +38,7 @@ function login($socket)
     $token = $_COOKIE["session"];
     $res = loginToken($socket, array("token" => $token));
     if ($res["status"] == "token_expired") {
-      setcookie("session", "", time() - 3600);
+      setcookie("session", "", time() - 3600, "/homework/", null, false, true); // TODO: see above
       unset($_COOKIE["session"]);
 
       return login($socket);
